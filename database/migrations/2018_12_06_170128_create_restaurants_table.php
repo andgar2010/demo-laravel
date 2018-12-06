@@ -15,6 +15,14 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('RESTRICT');
+            $table->string('name');
+            $table->string('telephone');
+            $table->string('address');
+            $table->string('schedule');
+            $table->text('description');
+            $table->text('img_path');
             $table->timestamps();
         });
     }
